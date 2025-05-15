@@ -32,6 +32,8 @@ To use with docker.
 Make sure to have docker installed.
 CD to the root directory of the project in a terminal and run:
 
+If using docker desktop, make sure to configure it to start with windows
+
 ```
 docker-compose build
 docker-compose up
