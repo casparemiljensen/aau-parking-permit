@@ -21,22 +21,22 @@ A scheduled parking permit issuer for avoiding fines when parking at AAU-Cassiop
 - Define a phone number - For a receipt (do not define the 45 prefix)
 - Define a license plate number (Upper or lowercase)
 
+`schedule.txt` example
 ```
 days: monday, tuesday, wednesday, thursday, friday
 times: 08:00
 phone_no: 12345678
 license_plate: AB12345
 ```
+The parking rules allows for 30 min parking using a parking-disc. Make sure to define a starttime for which after you are certain that the docker container has started.
 
 To use with docker.
-Make sure to have docker installed.
-CD to the root directory of the project in a terminal and run:
-
-If using docker desktop, make sure to configure it to start with windows
+* Make sure to have docker installed.
+* CD to the root directory of the project in a terminal and run:
 
 ```
 docker-compose build
 docker-compose up
 ```
 
-The parking rules allows for 30 min parking using a parking-disc. Make sure to define a time for which after you are certain that the docker container has started.
+If using docker desktop, make sure to configure it to start with windows.
