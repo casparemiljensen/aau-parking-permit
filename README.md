@@ -38,3 +38,5 @@ If using docker desktop, make sure to configure it to start with windows
 docker-compose build
 docker-compose up
 ```
+
+The parking rules allows for 30 min parking using a parking-disc. Make sure to define a time for which after you are certain that the docker container has started.
