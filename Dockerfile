@@ -4,7 +4,9 @@ ENV TZ=Europe/Copenhagen
 
 WORKDIR /app
 
+COPY parking_issuer.py .
 COPY scheduler.py .
+COPY schedule.txt .
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt

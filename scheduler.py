@@ -1,3 +1,4 @@
+from parking_issuer import run_parking_job
 from datetime import datetime, timedelta
 import pytz
 import time
@@ -16,6 +17,8 @@ LAST_RUN_FILE = ".last_run.json"
 def load_schedule(file_path="schedule.txt"):
     days = []
     times = []
+    phone_no = None
+    license_plate = None
 
     try:
         with open(file_path, "r") as f:
@@ -25,6 +28,11 @@ def load_schedule(file_path="schedule.txt"):
                     days = [x.strip() for x in line[5:].split(",") if x.strip()]
                 elif line.startswith("times:"):
                     times = [x.strip() for x in line[6:].split(",") if x.strip()]
+                elif line.startswith("phone_no:"):
+                    phone_no = line[9:].strip()
+                elif line.startswith("license_plate:"):
+                    license_plate = line[14:].strip()
+
     except Exception as e:
         raise RuntimeError(f"Failed to read schedule file: {e}")
 
@@ -36,10 +44,10 @@ def load_schedule(file_path="schedule.txt"):
     sorted_days = sorted(days, key=lambda d: WEEKDAY_TO_INDEX[d])
     sorted_times = sorted(times, key=lambda t: datetime.strptime(t, "%H:%M").time())
 
-    return sorted_days, sorted_times
+    return sorted_days, sorted_times, phone_no, license_plate
 
 
-TARGET_DAYS, TARGET_TIMES = load_schedule()
+TARGET_DAYS, TARGET_TIMES, PHONE_NO, LICENSE_PLATE = load_schedule()
 
 
 def load_last_run():
@@ -120,7 +128,8 @@ def check_schedule_spacing(min_hours_between=PERMIT_DURATION_HOURS) -> bool:
 
 def job(now: datetime):
     print(f"Running job at {now} (DK)")
-    # Task logic here...
+
+    run_parking_job(PHONE_NO, LICENSE_PLATE, DANISH_TIMEZONE)
 
 
 if __name__ == "__main__":
