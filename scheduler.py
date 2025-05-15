@@ -11,7 +11,7 @@ WEEKDAY_TO_INDEX = {
 }
 DANISH_TIMEZONE = pytz.timezone("Europe/Copenhagen")
 PERMIT_DURATION_HOURS = 10
-LAST_RUN_FILE = ".last_run.json"
+LAST_RUN_FILE = os.path.join("data", ".last_run.json")
 
 
 def load_schedule(file_path="schedule.txt"):
@@ -143,9 +143,7 @@ if __name__ == "__main__":
 
     while True:
         now = datetime.now(DANISH_TIMEZONE)
-        next_possible = last_run + timedelta(hours=PERMIT_DURATION_HOURS) if last_run else now
-        next_scheduled = get_next_run_time(now, TARGET_DAYS, TARGET_TIMES)
-        next_run = max(next_possible, next_scheduled)
+        next_run = get_next_run_time(now, TARGET_DAYS, TARGET_TIMES)
 
         wait_seconds = (next_run - now).total_seconds()
         print(f"Next run scheduled at {next_run} (in {int(wait_seconds)} seconds)")
