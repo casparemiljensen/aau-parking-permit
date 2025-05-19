@@ -24,14 +24,14 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.aau-parking-permit-ghcr }}
 
     - name: Build the Docker image
       run: |
-        IMAGE_TAG=my-image-name:${{ github.sha }}  # Tag with commit SHA for better tracking
+        IMAGE_TAG=aau-parking-permit:${{ github.sha }}
         docker build . --file Dockerfile --tag $IMAGE_TAG
 
     - name: Push the Docker image
       run: |
-        IMAGE_TAG=my-image-name:${{ github.sha }}
+        IMAGE_TAG=aau-parking-permit:${{ github.sha }}
         docker push $IMAGE_TAG
