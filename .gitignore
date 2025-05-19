@@ -175,5 +175,4 @@ cython_debug/
 
 
 # CUSTOM
-schedule.txt
 .last_run.json
