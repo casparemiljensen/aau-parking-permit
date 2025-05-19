@@ -3,6 +3,7 @@ version: "3.8"
 services:
   scheduler:
     build: .
+#    image: ghcr.io/casparemiljensen/aau-parking-permit:latest
     container_name: parking-scheduler
     restart: always
     environment:
