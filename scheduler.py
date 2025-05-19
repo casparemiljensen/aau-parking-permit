@@ -15,7 +15,7 @@ PERMIT_DURATION_HOURS = 10
 LAST_RUN_FILE = os.path.join("data", ".last_run.json")
 
 
-def load_schedule(file_path="schedule.txt"):
+def load_schedule(file_path="data/schedule.txt"):
     days = []
     times = []
     phone_no = None
