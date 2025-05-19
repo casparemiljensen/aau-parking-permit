@@ -39,4 +39,4 @@ docker-compose build
 docker-compose up
 ```
 
-If using docker desktop, make sure to configure it to start with windows.
+If using docker desktop, make sure to configure it to start with your pc.

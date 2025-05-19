@@ -1,3 +1,4 @@
+from parking_issuer import get_prepermit_response
 from parking_issuer import run_parking_job
 from datetime import datetime, timedelta
 import pytz
@@ -44,7 +45,7 @@ def load_schedule(file_path="schedule.txt"):
     sorted_days = sorted(days, key=lambda d: WEEKDAY_TO_INDEX[d])
     sorted_times = sorted(times, key=lambda t: datetime.strptime(t, "%H:%M").time())
 
-    return sorted_days, sorted_times, phone_no, license_plate
+    return sorted_days, sorted_times, phone_no, license_plate.upper()
 
 
 TARGET_DAYS, TARGET_TIMES, PHONE_NO, LICENSE_PLATE = load_schedule()
@@ -128,8 +129,8 @@ def check_schedule_spacing(min_hours_between=PERMIT_DURATION_HOURS) -> bool:
 
 def job(now: datetime):
     print(f"Running job at {now} (DK)")
-
-    run_parking_job(PHONE_NO, LICENSE_PLATE, DANISH_TIMEZONE)
+    payload = get_prepermit_response(LICENSE_PLATE, PHONE_NO)
+    run_parking_job(payload)
 
 
 if __name__ == "__main__":
@@ -146,7 +147,7 @@ if __name__ == "__main__":
         next_run = get_next_run_time(now, TARGET_DAYS, TARGET_TIMES)
 
         wait_seconds = (next_run - now).total_seconds()
-        print(f"Next run scheduled at {next_run} (in {int(wait_seconds)} seconds)")
+        print(f"Next run scheduled at {next_run} (in {int(wait_seconds)} seconds) - Phone: {PHONE_NO}, Plate: {LICENSE_PLATE}")
         time.sleep(wait_seconds)
 
         now = datetime.now(DANISH_TIMEZONE)

@@ -1,2 +1,0 @@
-days: monday, tuesday, wednesday, thursday, friday
-times: 08:00
