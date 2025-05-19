@@ -14,7 +14,7 @@ A scheduled parking permit issuer for avoiding fines when parking at AAU-Cassiop
 ### How to use it
 
 - Clone the project.
-- Make a file in the root directory of the project, name it `schedule.txt`
+- Edit the `schedule.txt` file
 
 - Define the days you wish a permit for (comma-separated).
 - Define the times of the day you wish a permit for (min. 10 hours apart, comma-separated)
