@@ -23,6 +23,6 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        IMAGE_TAG=ghcr.io/${{ github.repository }}:$(date +%s)
+        IMAGE_TAG=ghcr.io/${{ github.repository }}:latest
         docker build . --file Dockerfile --tag $IMAGE_TAG
         docker push $IMAGE_TAG
