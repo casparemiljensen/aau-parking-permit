@@ -7,7 +7,7 @@ WORKDIR /app
 COPY parking_issuer.py .
 COPY scheduler.py .
 RUN mkdir -p /data
-COPY data/schedule.txt /data/schedule.txt
+COPY data/schedule.txt ./data/schedule.txt
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
