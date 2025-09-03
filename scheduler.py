@@ -15,7 +15,12 @@ PERMIT_DURATION_HOURS = 10
 LAST_RUN_FILE = os.path.join("data", ".last_run.json")
 
 
-def load_schedule(file_path=os.path.join("data", "schedule.txt")):
+def load_schedule(file_path=os.path.join("data", "schedule.txt")): # possibly add /data
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(
+            f"Schedule file not found at '{file_path}'. Make sure it's mounted or copied correctly."
+        )
+
     days = []
     times = []
     phone_no = None
