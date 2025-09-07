@@ -12,4 +12,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN mkdir -p ./data
 
 COPY data/schedule.txt ./data/schedule.txt
-CMD ["python", "-u", "scheduler.py"]
+
+# CMD ensures schedule.txt exists in the mounted volume, then runs the scheduler
+CMD sh -c '\
+  [ ! -f /app/data/schedule.txt ] && cp /app/data/schedule.txt /app/data/schedule.txt || true; \
+  exec python -u scheduler.py \
+'
