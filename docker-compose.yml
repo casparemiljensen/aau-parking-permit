@@ -6,4 +6,7 @@ services:
     environment:
       - TZ=Europe/Copenhagen
     volumes:
-      - ./data:/app/data
+      - parking_data:/app/data
+
+volumes:
+  parking_data:
