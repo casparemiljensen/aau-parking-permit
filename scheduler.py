@@ -12,10 +12,10 @@ WEEKDAY_TO_INDEX = {
 }
 DANISH_TIMEZONE = pytz.timezone("Europe/Copenhagen")
 PERMIT_DURATION_HOURS = 10
-LAST_RUN_FILE = os.path.join("/app/data", ".last_run.json")
+LAST_RUN_FILE = os.path.join("app/data", ".last_run.json")
 
 
-def load_schedule(file_path=os.path.join("/app/data", "schedule.txt")): # possibly add /data
+def load_schedule(file_path=os.path.join("app/data", "schedule.txt")): # possibly add /data
     if not os.path.exists(file_path):
         raise FileNotFoundError(
             f"Schedule file not found at '{file_path}'. Make sure it's mounted or copied correctly."
