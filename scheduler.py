@@ -12,14 +12,18 @@ WEEKDAY_TO_INDEX = {
 }
 DANISH_TIMEZONE = pytz.timezone("Europe/Copenhagen")
 PERMIT_DURATION_HOURS = 10
-LAST_RUN_FILE = os.path.join("/app/data", ".last_run.json")
+DATA_DIR = "/app/data"
+SCHEDULE_FILE = os.path.join(DATA_DIR, "schedule.txt")
+LAST_RUN_FILE = os.path.join(DATA_DIR, ".last_run.json")
 
 
-def load_schedule(file_path=os.path.join("/app/data", "schedule.txt")): # possibly add /data
+def load_schedule(file_path=SCHEDULE_FILE): # possibly add /data
     if not os.path.exists(file_path):
-        raise FileNotFoundError(
-            f"Schedule file not found at '{file_path}'. Make sure it's mounted or copied correctly."
-        )
+        print(f"No schedule file found at '{file_path}', creating a default empty schedule...")
+        # Create the file with empty defaults
+        with open(file_path, "w") as f:
+            f.write("days:\ntimes:\nphone_no:\nlicense_plate:\n")
+        return [], [], None, None  # return empty/default values
 
     days = []
     times = []
