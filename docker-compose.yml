@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   scheduler:
     image: ghcr.io/casparemiljensen/aau-parking-permit:latest
